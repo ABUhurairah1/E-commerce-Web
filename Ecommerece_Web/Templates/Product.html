@@ -1,0 +1,24 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content%}
+<div class="product-container">
+    <div class="product-image">
+        <img src="{{product.image.url}}">
+     </div>
+    <div class="product-title">
+        <h1>Title : {{product.title}}</h1>
+    </div>
+    <div class="product-category">
+        <h2>Category : {{product.category}}</h2>
+    </div>
+    <div class="product-description">
+        <p>Description : {{product.description}}</p>
+    </div>
+    {% if user.is_staff %}
+    <div class="product-buttons">
+        <a class="Edit btn" href="{% url 'Edit-Product' product.id %}">Edit</a>
+        <a class="Delete btn" href="{% url 'Delete-Product' product.id %}">Delete</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

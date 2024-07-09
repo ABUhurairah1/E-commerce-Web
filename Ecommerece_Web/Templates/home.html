@@ -1,0 +1,67 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content%}
+{% if user.is_staff %}
+<div class="Admin_pannel">
+    <h1 class="main-heading">Admin Pannel</h1>
+    <div class="admin-buttons">
+        <a href="{% url 'Add-product' %}" class="Add_Product btn">Add Product</a>
+        <a href="{% url 'Add-category' %}" class="Add_Category btn">Add Category</a>
+    </div>
+    <div class="products-container">
+        <div class="Categories-heading">
+            <h1>Edit Categories List</h1>
+        </div>
+        <div class="Categories">
+            {% for category in categories %}
+            <ul class="Categories-list">
+                <a href="{% url 'Edit-Category' category.id %}">
+                    <li class="Category-title">{{category.title}}</li>
+                </a>
+            </ul>
+            {% endfor %}
+        </div>
+        <div class="Products">
+            <h1 class="Products-heading">Products List</h1>
+            {% for product in products %}
+            <ul class="Product-list">
+                <li class="Product-title">
+                    <a href="{% url 'Product' product.id %}">{{product.title}}</a></li>
+            </ul>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% else %}
+<h1 class="main-heading">Home Page</h1>
+<div class="categories-nav">
+    <ul class="nav-list">
+        {% for category in categories %}
+        <li class="nav-items">
+            <a href="{% url 'Products-by-category' category.id %}">{{ category.title }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+<!-- <div class="container">
+    {% for product in products %}
+        <div class="product-box">
+            <a href="{% url 'Product' product.id %}">
+            <div class="product-title">
+                <h1>Title : {{product.title}}</h1>
+            </div>
+            <div class="product-category">
+                <h2>Category : {{product.category}}</h2>
+            </div>
+            <div class="product-image">
+                <img src="{{product.image.url}}">
+            </div>
+            <div class="product-description">
+                <p>Description : {{product.description}}</p>
+            </div>
+            </a>
+        </div>
+    {% endfor %}
+</div> -->
+{% endif %}
+{% endblock %}

@@ -1,0 +1,333 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit';
+}
+a{
+    text-decoration: none;
+}
+li{
+    list-style: none;
+}
+.btn{
+    padding: 10px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0px 5px;
+}
+.main-heading {
+    text-align: center;
+    margin-bottom: 40px !important;
+    font-size: 2.5em;
+    color: #444;
+}
+
+
+                                                                    /* Nav Bar */
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0px;
+}
+.categories-nav{
+    width: 60%;
+    margin: 40px auto;
+
+}
+.nav-list{
+    display: flex;
+    justify-content: center;
+
+}
+.nav-items{
+    margin: 0px 25px;
+}
+.nav-items a{
+    color: #e94040;
+    font-size: 22px;
+    font-weight: bold;
+}
+.home{
+    font-size: 25px;
+    margin-left:100px;
+}
+.home a{
+    color: rgb(53, 213, 162);
+    font-weight: bold;
+}
+.Login-buttons{
+    display: flex ;
+    align-items: center;
+    margin-right: 50px;
+}
+.Login,.Logout,.Edit{
+    color: #007bff ;
+    background-color: white;
+    border: 2px solid #007bff;
+}
+.Sign-up{
+    background-color: #007bff;
+    color: white;
+    border: 2px solid #007bff;
+}
+
+                                                           /* Forms */
+
+
+
+ .form-container{
+    max-width: 800px;
+    margin: 100px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.form-heading {
+    font-size: 40px;
+    color: #007bff;
+    text-align: center;
+    margin: 30px 0px;
+}
+form{
+    padding: 50px;
+}
+.form-group {
+    margin-bottom: 20px;
+}
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+input[type="text"],
+input[type="file"],
+input[type="password"],
+input[type="email"],select{
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    background-color: #fff;
+}
+.form-btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+    outline: none;
+}
+.delete-form{
+    text-align: center;
+    font-size: large;
+}
+.delete-form h3{
+    margin: 20px 0px;
+}
+.delete-btn,.Delete{
+    color: #fff;
+    background-color: #ff3434;
+}
+.create-now{
+    display: flex;
+    align-items: center;
+}
+.create-now a{
+    text-decoration: underline;
+    color: #e94040;
+    margin: 0px 5px;
+}
+.message{
+    font-size: 16px;
+    color: #fff;
+    background-color: rgba(128, 128, 128, 0.742);
+    text-align: center;
+    margin: 10px auto;
+}
+.delete-button {
+    background-color: #e74c3c;
+    color: white;
+    padding: 7px 20px;
+
+}
+
+                                                              /* Admin Pannel */
+.admin-buttons a{
+    color: #fff;
+    background-color: #e94040;
+    margin: 20px 0px;
+}
+.Admin_pannel{
+    width: 80%;
+    padding: 50px;
+    text-align: center;
+    margin:auto;
+}
+
+.products-container{
+    padding: 50px 0px;
+    width: 100%;
+    justify-content: space-between;
+}
+.Product-title a{
+    margin-bottom: 30px;
+    font-size: 20px;
+    color: #007bff;
+}
+.Categories-heading h1{
+    color: #007bff;
+    margin-bottom: 15px;
+}
+.Category-title{
+    margin: 20px;
+    font-size: 20px;
+    color: #e94040;
+}
+.Products-heading{
+    color: #e94040;
+    margin-bottom: 20px;
+}
+.Categories{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0px;
+}
+.Add_Category{
+    color: #e94040 !important;
+    background-color: #fff !important;
+    border: 2px solid #e94040;
+    margin: 0px 5px !important;
+}
+.Add_Product{
+    background-color: #e94040 !important;
+    color: #fff !important;
+    border: 2px solid #e94040;
+    margin: 0px 5px !important;
+}
+.delete{
+    background-color: #e94040;
+    color: #fff;
+    padding: 8px 15px;
+
+}
+
+                                                              /* Product */
+.product-container {
+    width: max-content;
+    text-align: center;
+    margin: 25px auto;
+}
+
+.product-title h1 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.product-category h2 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #666;
+}
+
+.product-image {
+    text-align: center;
+    margin: 20px 0px;
+}
+
+.product-image img {
+    max-width: 100%;
+    max-height: 550px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.product-description p {
+    font-size: 1em;
+    color: #777;
+}
+
+.product-buttons {
+    display: flex;
+    justify-content: center;
+    margin: 15px 0;
+}
+
+                                                         /* USer .User_pannel */
+.container {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px auto;
+}
+
+/* Product box styling */
+.product-box {
+    width: 30%;
+    box-sizing: border-box;
+    margin: 10px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    text-align: center;
+}
+
+/* Product title styling */
+.product-box .product-title h1 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Product category styling */
+.product-box .product-category h2 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #666;
+}
+
+/* Product image container styling */
+.product-box .product-image {
+    width: 100%;
+    text-align: center;
+}
+
+/* Product image styling */
+.product-box .product-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* Product description styling */
+.product-box .product-description p {
+    font-size: 1em;
+    color: #777;
+}
+
+/* Main heading styling */
+.main-heading {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    color: #444;
+}
