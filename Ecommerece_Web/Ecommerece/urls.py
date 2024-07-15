@@ -17,5 +17,8 @@ path('edit-category/<str:cat_id>/',Edit_Category,name='Edit-Category'),
 path('delete-category/<str:cat_id>/',Delete_Category,name='Delete-Category'),
 path('delete-product/<str:product_id>/',Delete_Product,name='Delete-Product'),
 path('product-by-catogery/<str:cat_id>/',Products_by_categories,name='Products-by-category'),
-
+path('Cart/',Cart_page,name='Cart'),
+path('Add_cart/',Add_cart,name='Add_cart'),
+path('edit-cart-product/',Edit_cart_product,name='Edit-cart_product'),
+path('delete-cart-product/',Delete_cart_product,name='Delete-cart_product'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

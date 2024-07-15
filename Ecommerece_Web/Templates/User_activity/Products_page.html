@@ -18,7 +18,13 @@
             <div class="product-description">
                 <p>Description : {{product.description}}</p>
             </div>
+            <div class="product-price">
+                <p>Price : {{product.price}}rs</p>
+            </div>
             </a>
+            <div class="cart-btn">
+                <a href="{% url 'Product' product.id %}" class="Add-to-cart btn">Add to cart</a>
+            </div>
         </div>
     {% endfor %}
 </div>

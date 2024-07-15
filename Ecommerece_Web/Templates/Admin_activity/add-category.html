@@ -18,7 +18,7 @@
             </div>
             {% if page == 'Edit-Category' %}
             <button class="form-btn" name="submit">Edit</button>
-        <a class="delete form-btn" href="{% url 'Delete-Category' category.id %}">Delete</a>
+            <a class="delete form-btn" href="{% url 'Delete-Category' category.id %}">Delete</a>
             {% else %}
             <button class="form-btn" name="submit">Create</button>
             {% endif %}

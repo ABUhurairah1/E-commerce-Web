@@ -16,11 +16,15 @@ class Product(models.Model):
     description = models.TextField(default='',blank=True,null=True)
     image = models.ImageField(upload_to='Product-images/',default='',blank=True,null=True)
     category = models.ForeignKey(Category,on_delete=models.CASCADE,default='')
-    published = models.DateTimeField(default='',blank=True,null=True)
+    price = models.PositiveIntegerField(default='',blank=True,null=True)
+    published = models.DateTimeField(blank=True,null=True,auto_now_add=True)
 
     class Meta:
         ordering = ['-published']
 
     def __str__(self):
         return self.title
+    
+
+    
 

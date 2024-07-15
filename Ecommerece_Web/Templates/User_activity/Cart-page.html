@@ -1,0 +1,128 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content%}
+<h1 class="main-heading">My Cart</h1>
+<div class="cart-page-container">
+    {% for item in cart %}
+    {% with product=item.product %}
+    <div id="product-box" data-index="{{ product.id }}">
+        <div class="product-box">
+            <div class="product-image">
+                <img src="{{ product.image.url }}" alt="{{ cart_product.product.title }}">
+            </div>
+            <div class="product-info">
+                <div class="product-title">
+                    <h1>Title: {{ item.title }}</h1>
+                </div>
+                <div class="product-category">
+                    <h2>Category: {{ item.category }}</h2>
+                </div>
+                <div class="product-description">
+                    <p>Description: {{ item.description }}</p>
+                </div>
+                <div class="product-quantity">
+                    <div class="form-group">
+                        <h4>Quantity : </h4>
+                        <select class="product-qty" id="select{{ product.id }}">
+                            <option selected value="{{ item.quantity }}" id="selected_qty">
+                                {{ item.quantity }}
+                            </option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="product-price">
+                    <h4>Price : PKR{{ item.price }}</h4>
+                </div>
+            </div>
+        </div>
+        <div class="product-buttons">
+            <button type="button" class="Edit btn" id="Edit-cart" data-url="{% url 'Edit-cart_product' %}"
+                data-index="{{ product.id }}">Update</button>
+            <button type="button" class="Delete btn" id="Delete-cart" data-url="{% url 'Delete-cart_product' %}"
+                data-index="{{ product.id }}">Remove from cart</button>
+        </div>
+    </div>
+    {% endwith %}
+    {% endfor %}
+    <div class="sub-total_price">
+        Sub Total :
+        <h4 id="sub-total">{{ cart.get_sub_total }}</h4>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $(document).on('click', '#Delete-cart', function (event) {
+                event.preventDefault();
+                console.log("Button Clicked");
+                var product_id = $(this).data('index')
+                var url = $(this).data('url');
+                var csrf = '{{ csrf_token }}';
+
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    headers: {
+                        'X-CSRFToken': csrf,
+                    },
+                    data: {
+                        product_id: product_id,
+                        action: 'post'
+                    },
+                    success: function (json) {
+                        console.log(json)
+                        element = $('#product-box[data-index="' + product_id + '"]');
+                        console.log(element)
+                        element.remove();
+                        $('#sub-total').text(json.sub_total);
+                        $('#cart-quantity').text(json.quantity);
+                    },
+                    error: function (error, errmsg) {
+                        console.log("Error ocurred :", errmsg, err)
+                    }
+
+                });
+
+            }),
+
+            $(document).on('click', '#Edit-cart', function (event) {
+                event.preventDefault();
+                console.log("Button Clicked");
+                var product_id = $(this).data('index')
+
+                var product_qty = $('#select' + product_id + ' option:selected').val();
+                console.log(product_qty)
+
+                var url = $(this).data('url');
+                var csrf = '{{ csrf_token }}';
+
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    headers: {
+                        'X-CSRFToken': csrf,
+                    },
+                    data: {
+                        product_id: product_id,
+                        product_qty: product_qty,
+                        action: 'post'
+                    },
+                    success: function (json) {
+                        console.log(json)
+                        $('#cart-quantity').text(json.quantity);
+                        $('#sub-total').text(json.sub_total);
+                    },
+                    error: function (error, errmsg) {
+                        console.log("Error ocurred :", errmsg, err)
+                    }
+
+                });
+
+            });
+    });
+</script>
+{% endblock %}

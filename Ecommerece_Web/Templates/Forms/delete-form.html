@@ -22,6 +22,18 @@
                 <a class="delete-button btn" href="{% url 'Product' product.id %}">No</a>
             </form>
         </div>
+        {% elif page == "Delete-cart-product" %}
+        <div class="delete-form">
+            <form action="#" method="post">
+                {%csrf_token%}
+                <h3>Did You Realy Want To 
+                    Remove This "{{cart_product.product.title}}" 
+                    Product From Cart?
+                </h3>
+                <input class="form-btn" type="submit" value="Yes">
+                <a class="delete-button btn" href="{% url 'Cart' %}">No</a>
+            </form>
+        </div>
         {% else %} 
         <div class="delete-form">
             <form action="#" method="post">

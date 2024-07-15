@@ -13,9 +13,10 @@ class SignUpForm(UserCreationForm):
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ['image','category','title','description']
+        fields = ['image','category','title','description','price']
 
 class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
         fields = ['title']
+
