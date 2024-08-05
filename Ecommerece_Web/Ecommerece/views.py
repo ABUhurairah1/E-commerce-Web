@@ -5,20 +5,46 @@ from .forms import SignUpForm,ProductForm,CategoryForm
 from .models import Product,Category
 from django.http import JsonResponse
 from django.contrib import messages
+from django.db.models import Q
 from .cart import Cart
 
 # Create your views here.
 
 def Home(request):
-    products = Product.objects.all()
+    page = "Home"
     categories = Category.objects.all()
+    products = Product.objects.all()
 
-    
+    results = []
+    q = request.GET.get('q') 
+    if q:
+        results = Product.objects.filter(
+                        Q(title__icontains = q) | 
+                          Q(description__icontains = q)
+                          )
 
-    context = {'products' : products,
-               'categories': categories
+    context = { 'categories' : categories ,
+               'products' : products ,
+               'results' : results ,
+                 'q' : q ,
+                 'page' : page
                }
     return render(request,'home.html',context)
+
+
+def Products(request,product_id):
+    product = Product.objects.get(id = product_id)
+    context = {'product' : product
+               }
+    return render(request,'Product.html',context)  
+
+
+def Products_by_categories(request,cat_id):
+    category = Category.objects.get(id = cat_id)
+    products = Product.objects.filter(category = category)
+    
+    context = {'products' : products,'category' : category}
+    return render(request,'User_activity/Products_page.html',context)
 
 
 
@@ -26,7 +52,7 @@ def Home(request):
 def Sign_in(request):
 
     if request.method == 'POST':
-        form = SignUpForm(request.POST,request.FILES)
+        form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('Login')
@@ -58,6 +84,9 @@ def Login(request):
 def Logout(request):
     logout(request)
     return redirect('Home')
+
+
+
 
 def Add_Category(request):
      
@@ -154,20 +183,6 @@ def Delete_Product(request,product_id):
         
 
 
-def Products(request,product_id):
-    product = Product.objects.get(id = product_id)
-    context = {'product' : product
-               }
-    return render(request,'Product.html',context)  
-
-
-def Products_by_categories(request,cat_id):
-    category = Category.objects.get(id = cat_id)
-    products = Product.objects.filter(category = category)
-    
-    context = {'products' : products,'category' : category}
-    return render(request,'User_activity/Products_page.html',context)
-
 
 def Cart_page(request):
     cart = Cart(request)
@@ -183,7 +198,7 @@ def Add_cart(request):
        product_qty = int(request.POST.get('product_qty'))
        product = Product.objects.get(id = product_id)
        cart.add(product = product , product_qty = product_qty)
-       cart_qty = cart.__len__()
+       cart_qty = len(cart)
        response = JsonResponse({
                  'status' : 'save' , 
                  'product_id' : str(product.id) ,
@@ -204,10 +219,10 @@ def Edit_cart_product(request):
        print(product_qty)
        cart.update(product = product_id , product_qty = product_qty)
        
-       cart_qty = cart.__len__()
+       cart_qty = len(cart)
        cart_sub_total = cart.get_sub_total()
 
-       response = JsonResponse({'Success' : True , 'quantity' : int(cart_qty) , 'sub_total' : int(cart_sub_total) ,})
+       response = JsonResponse({'Success' : True , 'quantity' : int(cart_qty) , 'sub_total' : int(cart_sub_total)})
        return response
 
 
@@ -218,7 +233,7 @@ def Delete_cart_product(request):
        cart.delete(product = product_id)
 
        cart_sub_total = cart.get_sub_total()
-       cart_qty = cart.__len__()
+       cart_qty = len(cart)
        response = JsonResponse({'Success' : True , 'sub_total' : int(cart_sub_total) , 'quantity' : int(cart_qty) })
        return response
        

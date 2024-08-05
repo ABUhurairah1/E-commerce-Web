@@ -1,21 +1,23 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'Style/style.css' %}">
-    <title>Delete {{blog.title}}</title>
+    <title>Delete {{ blog.title }}</title>
 </head>
+
 <body>
     <div class="form-container">
-        
-        {% if page == "Delete-Product" %} 
+
+        {% if page == "Delete-Product" %}
         <div class="delete-form">
             <form action="#" method="post">
                 {%csrf_token%}
-                <h3>Did You Realy Want To 
-                    Delete This "{{product.title}}" 
+                <h3>Did You Realy Want To
+                    Delete This "{{ product.title }}"
                     Product?
                 </h3>
                 <input class="form-btn" type="submit" value="Yes">
@@ -26,29 +28,30 @@
         <div class="delete-form">
             <form action="#" method="post">
                 {%csrf_token%}
-                <h3>Did You Realy Want To 
-                    Remove This "{{cart_product.product.title}}" 
+                <h3>Did You Realy Want To
+                    Remove This "{{ cart_product.product.title }}"
                     Product From Cart?
                 </h3>
                 <input class="form-btn" type="submit" value="Yes">
                 <a class="delete-button btn" href="{% url 'Cart' %}">No</a>
             </form>
         </div>
-        {% else %} 
+        {% else %}
         <div class="delete-form">
             <form action="#" method="post">
                 {%csrf_token%}
-                <h3>Did You Realy Want To 
-                    Delete This "{{category.title}}" 
+                <h3>Did You Realy Want To
+                    Delete This "{{ category.title }}"
                     Category?
                 </h3>
                 <input class="form-btn" type="submit" value="Yes">
                 <a class="delete-button btn" href="{% url 'Home' %}">No</a>
             </form>
         </div>
-            {%endif%}
+        {%endif%}
         </form>
-       </div>
+    </div>
     </div>
 </body>
+
 </html>

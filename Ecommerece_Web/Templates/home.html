@@ -16,7 +16,7 @@
             {% for category in categories %}
             <ul class="Categories-list">
                 <a href="{% url 'Edit-Category' category.id %}">
-                    <li class="Category-title">{{category.title}}</li>
+                    <li class="Category-title">{{ category.title }}</li>
                 </a>
             </ul>
             {% endfor %}
@@ -26,7 +26,7 @@
             {% for product in products %}
             <ul class="Product-list">
                 <li class="Product-title">
-                    <a href="{% url 'Product' product.id %}">{{product.title}}</a></li>
+                    <a href="{% url 'Product' product.id %}">{{ product.title }}</a></li>
             </ul>
             {% endfor %}
         </div>
@@ -43,5 +43,56 @@
         {% endfor %}
     </ul>
 </div>
+{% if q == None %}
+<div class="container">
+    {% for product in products %}
+    <div class="product-box">
+        <a href="{% url 'Product' product.id %}">
+            <div class="product-title">
+                <h1>Title : {{ product.title }}</h1>
+            </div>
+            <div class="product-category">
+                <h2>Category : {{ product.category }}</h2>
+            </div>
+            <div class="product-image">
+                <img src="{{ product.image.url }}">
+            </div>
+            <div class="product-description">
+                <p>Description : {{ product.description }}</p>
+            </div>
+            <div class="product-price">
+                <p>Price : PKR{{ product.price }}</p>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% elif results %}
+<div class="container">
+    {% for product in results %}
+    <div class="product-box">
+        <a href="{% url 'Product' product.id %}">
+            <div class="product-title">
+                <h1>Title : {{ product.title }}</h1>
+            </div>
+            <div class="product-category">
+                <h2>Category : {{ product.category }}</h2>
+            </div>
+            <div class="product-image">
+                <img src="{{ product.image.url }}">
+            </div>
+            <div class="product-description">
+                <p>Description : {{ product.description }}</p>
+            </div>
+            <div class="product-price">
+                <p>Price : PKR{{ product.price }}</p>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% elif  q != '' %}
+<h2 class = "error-message">No results found.</h2>
+{% endif %}
 {% endif %}
 {% endblock %}

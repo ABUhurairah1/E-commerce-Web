@@ -5,10 +5,13 @@ class Cart():
     
     def __init__(self, request):
         self.session = request.session
+        # self.session.set_test_cookie()
+        # print(self.session.test_cookie_worked())
         cart = self.session.get('session-key')
         if 'session-key' not in request.session:
             cart = self.session['session-key'] = {}
         self.cart = cart
+
 
     def add(self, product, product_qty):
         """
@@ -50,25 +53,24 @@ class Cart():
 
     def __len__(self):
         """
+        
         Get the cart data and count the quantity
+
         """
         return sum(item['quantity'] for item in self.cart.values())
     
 
     def delete(self , product):
-
         """
-  
+
            Delete item from session data
 
-
         """
-
         product_id = str(product)
 
         if product_id in self.cart:
             del self.cart[product_id]
-
+        
         self.session.modified = True
 
 
@@ -76,9 +78,8 @@ class Cart():
     def update(self , product,product_qty):
 
         """
-  
-           Update values in session data
 
+           Update values in session data
 
         """
         product_id = str(product)

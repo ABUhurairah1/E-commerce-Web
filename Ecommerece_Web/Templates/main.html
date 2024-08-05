@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'Style/style.css'%}">
     <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
-    <script src="{% static 'Js/script.js'%}"></script>
     <title>Home</title>
 </head>
 
@@ -18,8 +17,15 @@
         </div>
 
         <div class="Login-buttons">
+                {% if page == 'Home' %}
+                <form method="GET" class = "search_bar">
+                    <input type="text" name="q" placeholder="Search...">
+                    <button type="submit" class = "search-btn">Search</button>
+                </form>
+                {% endif %}
+
             {% if user.is_authenticated %}
-            <h3>@{{user.username}}</h3>
+            <h3>@{{ user.username }}</h3>
             <a href="{% url 'Logout' %}" class="btn Logout">Logout</a>
             {% else %}
             <a href="{% url 'Login' %}" class="btn Login">Login</a>
@@ -37,7 +43,7 @@
                     {% else %}
 
                     0
-                    
+
                     {% endif %}
                     {% endwith %}
                 </div>

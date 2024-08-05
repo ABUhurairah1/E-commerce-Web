@@ -1,31 +1,28 @@
 {% extends 'main.html' %}
 {% load static %}
 {% block content%}
-<h1 class="main-heading">{{category}}</h1>
+<h1 class="main-heading">{{ category }}</h1>
 <div class="container">
     {% for product in products %}
-        <div class="product-box">
-            <a href="{% url 'Product' product.id %}">
+    <div class="product-box">
+        <a href="{% url 'Product' product.id %}">
             <div class="product-title">
-                <h1>Title : {{product.title}}</h1>
+                <h1>Title : {{ product.title }}</h1>
             </div>
             <div class="product-category">
-                <h2>Category : {{product.category}}</h2>
+                <h2>Category : {{ product.category }}</h2>
             </div>
             <div class="product-image">
-                <img src="{{product.image.url}}">
+                <img src="{{ product.image.url }}">
             </div>
             <div class="product-description">
-                <p>Description : {{product.description}}</p>
+                <p>Description : {{ product.description }}</p>
             </div>
             <div class="product-price">
-                <p>Price : {{product.price}}rs</p>
+                <p>Price : PKR{{ product.price }}</p>
             </div>
-            </a>
-            <div class="cart-btn">
-                <a href="{% url 'Product' product.id %}" class="Add-to-cart btn">Add to cart</a>
-            </div>
-        </div>
+        </a>
+    </div>
     {% endfor %}
 </div>
 {% endblock %}

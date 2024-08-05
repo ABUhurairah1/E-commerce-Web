@@ -1,20 +1,23 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'Style/style.css' %}">
     <title>Add Blog</title>
 </head>
+
 <body>
     <div class="form-container">
-        <h1 class="form-heading">{% if page == 'Edit-Product' %}Edit Product{% elif page == 'Add-Product' %}Add Product{% elif page == 'Edit-Category' %}Edit Category{% else %}Add Category{% endif %}</h1>
-        <form  method="post" enctype="multipart/form-data">
+        <h1 class="form-heading">{% if page == 'Edit-Product' %}Edit Product{% elif page == 'Add-Product' %}Add
+            Product{% elif page == 'Edit-Category' %}Edit Category{% else %}Add Category{% endif %}</h1>
+        <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-group">
                 <label for="title">Title :</label>
-                {{form.title}}
+                {{ form.title }}
             </div>
             {% if page == 'Edit-Category' %}
             <button class="form-btn" name="submit">Edit</button>
@@ -23,7 +26,8 @@
             <button class="form-btn" name="submit">Create</button>
             {% endif %}
         </form>
-        
+
     </div>
 </body>
+
 </html>

@@ -81,8 +81,8 @@
                         $('#sub-total').text(json.sub_total);
                         $('#cart-quantity').text(json.quantity);
                     },
-                    error: function (error, errmsg) {
-                        console.log("Error ocurred :", errmsg, err)
+                    error: function (error, status) {
+                        console.log("Error ocurred :", status, error)
                     }
 
                 });
@@ -116,8 +116,8 @@
                         $('#cart-quantity').text(json.quantity);
                         $('#sub-total').text(json.sub_total);
                     },
-                    error: function (error, errmsg) {
-                        console.log("Error ocurred :", errmsg, err)
+                    error: function (error, status) {
+                        console.log("Error ocurred :", status, error)
                     }
 
                 });
